@@ -1,4 +1,4 @@
-// 진법 변환 2
+// 진법 변환 2 bj.11005
 #include <iostream>
 #include <string>
 

@@ -1,4 +1,4 @@
-// 세탁소 사장 동혁
+// 세탁소 사장 동혁 bj.2720
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 

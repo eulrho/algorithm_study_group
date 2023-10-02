@@ -1,4 +1,4 @@
-// 진법 변환
+// 진법 변환 bj.2745
 #include <iostream>
 #include <string>
 
