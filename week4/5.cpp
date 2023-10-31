@@ -25,7 +25,7 @@ int main()
     cin >> str >> test_case;
     len = str.size();
     initialize_set(lst, str, len);
-     while (i < test_case)
+    while (i < test_case)
     {
         cin >> order;
         switch (order) {
