@@ -13,7 +13,7 @@ void sort_v(vector<vector<int>> &v, int N)
         sort(v[i].begin(), v[i].end());
 }
 
-void bfs(vector<vector<int>> &v, int N, int start)
+void bfs(vector<vector<int>> v, int N, int start)
 {
     vector<bool> visited(N + 1, false);
     queue<int> q;
@@ -36,7 +36,7 @@ void bfs(vector<vector<int>> &v, int N, int start)
     }
 }
 
-void dfs(vector<vector<int>> &v, int N, int start)
+void dfs(vector<vector<int>> v, int N, int start)
 {
     vector<bool> visited(N + 1, false);
     stack<int> st;
@@ -49,7 +49,6 @@ void dfs(vector<vector<int>> &v, int N, int start)
         {
             visited[st.top()] = true;
             cout << st.top();
-
             if (cnt < N)
                 cout << ' ';
             cnt++;
