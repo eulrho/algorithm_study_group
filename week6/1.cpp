@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-void sort_a(int *num_a, int *num_b)
+void swap_a(int *num_a, int *num_b)
 {
     int temp;
 
@@ -14,7 +14,7 @@ void sort_a(int *num_a, int *num_b)
 void print_result(int i, int j)
 {
     int small = i, big = j;
-    if (i > j) sort_a(&small, &big);
+    if (i > j) swap_a(&small, &big);
     cout << small << ' ' << big;
 }
 
@@ -35,7 +35,7 @@ void selection_sort(int *a, int n, int k)
             cnt++;
             if (cnt == k)
                 print_result(a[last], a[max_idx]);
-            sort_a(&a[last], &a[max_idx]);
+            swap_a(&a[last], &a[max_idx]);
         }
     }
     if (cnt < k) cout << -1;

@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-void sort_a(int *num_a, int *num_b)
+void swap_a(int *num_a, int *num_b)
 {
     int temp;
 
@@ -14,7 +14,7 @@ void sort_a(int *num_a, int *num_b)
 void print_result(int i, int j)
 {
     int small = i, big = j;
-    if (i > j) sort_a(&small, &big);
+    if (i > j) swap_a(&small, &big);
     cout << small << ' ' << big;
 }
 
@@ -27,7 +27,7 @@ void bubble_sort(int *a, int n, int k)
             if (a[i] > a[i+1]) {
                 cnt++;
                 if (cnt == k) print_result(a[i], a[i+1]);
-                sort_a(&a[i], &a[i+1]);
+                swap_a(&a[i], &a[i+1]);
             }
         }
     }
