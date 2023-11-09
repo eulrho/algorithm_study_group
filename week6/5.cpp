@@ -1,4 +1,4 @@
-// 알고리즘 수업 - 퀵 정렬 1
+// 알고리즘 수업 - 퀵 정렬 1 bj.24090
 #include <iostream>
 using namespace std;
 
