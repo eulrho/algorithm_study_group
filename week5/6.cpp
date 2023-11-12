@@ -28,8 +28,7 @@ int bfs(vector<string> v, int N, int M)
                 if (v[f + dy[i]][s + dx[i]] == '1' && visited[f + dy[i]][s + dx[i]] == false) {
                     visited[f + dy[i]][s + dx[i]] = true;
                     q.push(make_pair(f + dy[i], s + dx[i]));
-                    if (route[f + dy[i]][s + dx[i]] == 1 || route[f + dy[i]][s + dx[i]] > route[f][s] + 1)
-                        route[f + dy[i]][s + dx[i]] = route[f][s] + 1;
+                    route[f + dy[i]][s + dx[i]] = route[f][s] + 1;
                 }
             }
         }
