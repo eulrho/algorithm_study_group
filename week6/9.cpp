@@ -6,6 +6,26 @@ using namespace std;
 
 int idx=1;
 
+void print_result(int *result, int size)
+{
+    int level=1, mult=1;
+
+    for (int i=1; i<=size; i++) {
+        cout << result[i];
+        if (level == i) {
+            cout << '\n';
+            level += 2*mult;
+            mult++;
+        }
+        else cout << ' ';
+    }
+}
+
+void input_buildings(int *building, int size)
+{
+    for (int i = 1; i <= size; i++) cin >> building[i];
+}
+
 void find_node(int *building, int *result, int node, int max_node)
 {
     if (2 * node <= max_node)
@@ -18,23 +38,15 @@ void find_node(int *building, int *result, int node, int max_node)
 
 int main()
 {
-    int level=1, mult=1, k, size;
+    int k, size;
     cin >> k;
     size = (int)pow(2, k) - 1;
     int *building = new int[size+1];
     int *result = new int[size+1];
 
-    for (int i=1; i<=size; i++) cin >> building[i];
+    input_buildings(building, size);
     find_node(building, result, 1, size);
-    for (int i=1; i<=size; i++) {
-        cout << result[i];
-        if (level == i) {
-            cout << '\n';
-            level += 2*mult;
-            mult++;
-        }
-        else cout << ' ';
-    }
+    print_result(result, size);
     delete []building;
     delete []result;
     return (0);
