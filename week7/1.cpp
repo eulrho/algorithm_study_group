@@ -8,13 +8,13 @@ int find_target(int target, int *sample, int n)
 {
     int left = 0, right = n - 1, mid;
 
-    while (left < right) {
+    while (left <= right) {
         mid = (left + right) / 2;
-        if (sample[mid] < target) left = mid + 1;
-        else right = mid;
+        if (sample[mid] == target) return (1);
+        else if (sample[mid] < target) left = mid + 1;
+        else right = mid - 1;
     }
-    if (target == sample[left]) return (1);
-    else return (0);
+    return (0);
 }
 
 int main()
