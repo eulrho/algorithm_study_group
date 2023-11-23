@@ -22,9 +22,9 @@ void divide(int paper[][128], int *blue, int *white, int y_left, int y_right, in
 {
     int y_mid, x_mid;
 
+    if (is_full(paper, blue, white, y_left, y_right, x_left, x_right) == true)
+        return ;
     if (y_left < y_right && x_left < x_right) {
-        if (is_full(paper, blue, white, y_left, y_right, x_left, x_right) == true)
-            return ;
         y_mid = (y_left + y_right) / 2;
         x_mid = (x_left + x_right) / 2;
         divide(paper, blue, white, y_left, y_mid, x_left, x_mid);
@@ -32,8 +32,6 @@ void divide(int paper[][128], int *blue, int *white, int y_left, int y_right, in
         divide(paper, blue, white, y_mid+1, y_right, x_left, x_mid);
         divide(paper, blue, white, y_mid+1, y_right, x_mid+1, x_right);
     }
-    else if (y_left == y_right && x_left == x_right)
-        is_full(paper, blue, white, y_left, y_right, x_left, x_right);
 }
 
 int main()
