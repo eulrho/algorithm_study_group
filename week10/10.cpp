@@ -35,7 +35,7 @@ void check_blind(int visited[][10])
         min_size = cnt;
 }
 
-void dfs(int visited[][10], int start_y, int start_x, int pos_y, int pos_x)
+void find(int visited[][10], int start_y, int start_x, int pos_y, int pos_x)
 {
     int y, x;
 
@@ -66,7 +66,7 @@ void cctv(int visited[][10], int cctv_cnt)
                     if (i + dy[k] < 0 || i + dy[k] >= n || j + dx[k] < 0 || j + dx[k] >= m)
                         continue ;
                     copy_arr(visited, temp);
-                    dfs(temp, i, j, dy[k], dx[k]);
+                    find(temp, i, j, dy[k], dx[k]);
                     cctv(temp, cctv_cnt - 1);
                 }
             }
@@ -74,8 +74,8 @@ void cctv(int visited[][10], int cctv_cnt)
                 visited[i][j] = 1;
                 for (int k=0; k<2;k++) {
                     copy_arr(visited, temp);
-                    dfs(temp, i, j, dy[k], dx[k]);
-                    dfs(temp, i, j, dy[k + 2], dx[k + 2]);
+                    find(temp, i, j, dy[k], dx[k]);
+                    find(temp, i, j, dy[k + 2], dx[k + 2]);
                     cctv(temp, cctv_cnt - 1);
                 }
             }
@@ -83,8 +83,8 @@ void cctv(int visited[][10], int cctv_cnt)
                 visited[i][j] = 1;
                 for (int k=0; k<4;k++) {
                     copy_arr(visited, temp);
-                    dfs(temp, i, j, dy[k], dx[k]);
-                    dfs( temp, i, j, dy[(k + 1) % 4], dx[(k + 1) % 4]);
+                    find(temp, i, j, dy[k], dx[k]);
+                    find( temp, i, j, dy[(k + 1) % 4], dx[(k + 1) % 4]);
                     cctv( temp, cctv_cnt - 1);
                 }
             }
@@ -92,9 +92,9 @@ void cctv(int visited[][10], int cctv_cnt)
                 visited[i][j] = 1;
                 for (int k=0; k<4;k++) {
                     copy_arr(visited, temp);
-                    dfs(temp, i, j, dy[k], dx[k]);
-                    dfs(temp, i, j, dy[(k + 1) % 4], dx[(k + 1) % 4]);
-                    dfs( temp, i, j, dy[(k + 2) % 4], dx[(k + 2) % 4]);
+                    find(temp, i, j, dy[k], dx[k]);
+                    find(temp, i, j, dy[(k + 1) % 4], dx[(k + 1) % 4]);
+                    find( temp, i, j, dy[(k + 2) % 4], dx[(k + 2) % 4]);
                     cctv( temp, cctv_cnt - 1);
                 }
             }
@@ -102,7 +102,7 @@ void cctv(int visited[][10], int cctv_cnt)
                 visited[i][j] = 1;
                 copy_arr(visited, temp);
                 for (int k=0; k<4;k++)
-                    dfs(temp, i, j, dy[k], dx[k]);
+                    find(temp, i, j, dy[k], dx[k]);
                 cctv( temp, cctv_cnt - 1);
             }
         }
