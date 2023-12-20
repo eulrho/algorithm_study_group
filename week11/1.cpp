@@ -9,14 +9,15 @@ bool stop = false;
 int dx[4] = {1, 1, 2, 2};
 int dy[4] = {-2, 2, -1, 1};
 
-long long four_orders(long long num, int *y, int *x)
+long long four_orders()
 {
+    int y = n, x= 1;
     long long i;
 
     for (i = 0; i < 4; i++) {
-        *y += dy[num + i];
-        *x += dx[num + i];
-        if (*y > n || *x > m){
+        y += dy[i];
+        x += dx[i];
+        if (y > n || x > m){
             stop = true;
             break ;
         }
@@ -24,14 +25,14 @@ long long four_orders(long long num, int *y, int *x)
     return (i);
 }
 
-long long greedy(int y, int x)
+long long greedy()
 {
     long long count;
 
     if (n >= 3) {
         if (m <= 4)
             return (m);
-        count = 1 + four_orders(0, &y, &x);
+        count = 1 + four_orders();
         if (stop) return (count);
         else {
             count += m - 7;
@@ -50,6 +51,6 @@ int main()
 {
     fast;
     cin >> n >> m;
-    cout << greedy(n, 1);
+    cout << greedy();
     return (0);
 }
