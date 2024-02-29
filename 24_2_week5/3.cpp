@@ -9,10 +9,6 @@ int main()
 	int n, m, res=0;
 
 	cin >> n >> m;
-	if (n == 1 && m == 1) {
-		cout << 0;
-		return (0);
-	}
 	if (n != 1) res += n - 1;
 	if (m != 1) res += n * (m - 1);
 	cout << res;
