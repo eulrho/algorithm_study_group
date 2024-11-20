@@ -10,11 +10,7 @@ using namespace std;
 
 struct trie_node {
 	map<char, trie_node*> next;
-	bool end_point;
-
-	trie_node() {
-		end_point = false;
-	};
+	bool end_point = false;
 };
 
 struct trie {
@@ -48,7 +44,7 @@ string binary_to_decimal(string &number)
 
 void convert_d_to_b(string &number, int &subnet)
 {
-	string res; 
+	string res;
 
 	size_t n = number.find('/');
 	subnet = stoi(number.substr(n + 1));
@@ -67,7 +63,7 @@ void convert_d_to_b(string &number, int &subnet)
 
 void convert_b_to_d(string &number)
 {
-	string res; 
+	string res;
 
 	char separator = '.';
 	stringstream ss(number);
@@ -97,9 +93,8 @@ void insert(trie_node *parent, string number, int subnet)
 	parent->end_point = true;
 }
 
-void pill_address(string &address)
+void fill_address(string &address)
 {
-	int size = (int)address.size();
 	string sample = "00000000.00000000.00000000.00000000";
 
 	address += sample.substr(address.size());
@@ -107,18 +102,18 @@ void pill_address(string &address)
 
 void optimize(trie_node *parent) {
 	if (parent->end_point) return ;
-	
-	map<char, trie_node*>::iterator iter = parent->next.begin();
-	for (; iter != parent->next.end(); iter++) {
+
+	map<char, trie_node*>::reverse_iterator iter = parent->next.rbegin();
+	for (; iter != parent->next.rend(); iter++) {
 		if (!iter->second->end_point) {
 			optimize(iter->second);
 		}
 	}
 
-	if (parent->next.size() == 2 && parent->next['0']->end_point && parent->next['1']->end_point) {
+	if (parent->next.find('.') != parent->next.end() && parent->next['.']->end_point)
 		parent->end_point = true;
-		return ;
-	}
+	if (parent->next.size() == 2 && parent->next['0']->end_point && parent->next['1']->end_point)
+		parent->end_point = true;
 }
 
 void find_address(trie_node *parent, string address) {
@@ -134,12 +129,12 @@ void find_address(trie_node *parent, string address) {
 		}
 
 		string subnet = "/" + to_string(size - tmp);
-		pill_address(address);
+		fill_address(address);
 		convert_b_to_d(address);
 		cout << address + subnet << '\n';
 		return ;
 	}
-	
+
 	map<char, trie_node*>::iterator iter = parent->next.begin();
 	for (; iter != parent->next.end(); iter++) {
 		find_address(iter->second, address + iter->first);
